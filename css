@@ -1,0 +1,128 @@
+/* Estilos generales y fondo */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Dancing Script', cursive;
+    background-color: #F5E8DC; /* Color de fondo suave como en el video */
+    color: #5C4033; /* Color de texto oscuro y cálido */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.container {
+    text-align: center;
+    transform: translateY(10%); /* Empuja el contenido un poco hacia abajo */
+}
+
+/* Contenedor del árbol */
+.arbol-container {
+    position: relative;
+    height: 300px;
+    width: 300px;
+    margin: 0 auto;
+}
+
+/* El tronco del árbol */
+.tronco {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 15px;
+    height: 0; /* Inicia sin altura */
+    background-color: #5C4033;
+    border-radius: 10px 10px 0 0;
+    animation: crecer-tronco 2s ease-out forwards;
+    animation-delay: 0.5s; /* El tronco empieza a crecer después de medio segundo */
+}
+
+/* Animación para que el tronco crezca */
+@keyframes crecer-tronco {
+    from {
+        height: 0;
+    }
+    to {
+        height: 150px; /* Altura final del tronco */
+    }
+}
+
+/* Estilo para cada hoja de corazón */
+.hoja-corazon {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #ff7b7b; /* Color base del corazón */
+    opacity: 0; /* Inician invisibles */
+    animation: aparecer-hoja 1s ease-out forwards;
+}
+
+/* La forma de corazón se crea con pseudo-elementos */
+.hoja-corazon::before,
+.hoja-corazon::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: inherit; /* Hereda el color del padre */
+}
+
+.hoja-corazon::before {
+    top: -10px;
+    left: 0;
+}
+
+.hoja-corazon::after {
+    top: 0;
+    left: 10px;
+}
+
+/* Animación para que las hojas aparezcan y formen el corazón */
+@keyframes aparecer-hoja {
+    from {
+        opacity: 0;
+        transform: scale(0);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(45deg); /* La rotación es clave para la forma del corazón */
+    }
+}
+
+/* Estilos del texto y el contador */
+.texto-container {
+    opacity: 0; /* El texto aparece después de la animación del árbol */
+    animation: aparecer-texto 1.5s ease-in-out forwards;
+    animation-delay: 4.5s; /* Retraso para que aparezca al final */
+}
+
+h1 {
+    font-size: 2.5em;
+    margin: 10px 0;
+}
+
+.contador {
+    font-size: 1.8em;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.mensaje-final {
+    font-size: 1.5em;
+    margin-top: 20px;
+}
+
+/* Animación para que el texto aparezca suavemente */
+@keyframes aparecer-texto {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
